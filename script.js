@@ -15,14 +15,16 @@ function getSquares() {
         return;
     } else if (squares === "") {
         alert("Error: Must enter a number");
-        return(getSquares());
+        return getSquares();
     } else if (Number.isNaN(numberSquares)) {
         alert("Error: Please enter a number");
-        return(getSquares());
+        return getSquares();
     } else if ((numberSquares <= 0) || (numberSquares > 100)) {
         alert("Error: Enter a number between 1 - 100");
-        return(getSquares()); 
+        return getSquares(); 
     }
+
+    container.innerHTML = '';
     createGrid(); 
      
 };
@@ -31,7 +33,7 @@ function createDiv() {
     const squareDiv = document.createElement('div');
     squareDiv.style.flexBasis = 100 / squares + '%';
     squareDiv.addEventListener('mouseenter', (event) => {
-        event.target.style.backgroundColor = 'green';
+        event.target.style.backgroundColor = randomRgb();
     });
     container.append(squareDiv);
 }
@@ -40,5 +42,12 @@ function createGrid() {
     for (let i = 0; i < squares * squares; i++) {
         createDiv();
     }
+};
+
+function randomRgb() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
 };
 
