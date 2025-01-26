@@ -30,10 +30,18 @@ function getSquares() {
 };
 
 function createDiv() {
+    
     const squareDiv = document.createElement('div');
     squareDiv.style.flexBasis = 100 / squares + '%';
+    squareDiv.dataset.opacity = "0";
     squareDiv.addEventListener('mouseenter', (event) => {
+        let currentOpacity = squareDiv.dataset.opacity;
+        let updatedOpacity = Number(currentOpacity) + 0.1;
         event.target.style.backgroundColor = randomRgb();
+        if (updatedOpacity <= 1) {
+            squareDiv.dataset.opacity = updatedOpacity;
+            event.target.style.opacity = updatedOpacity;
+        }
     });
     container.append(squareDiv);
 }
